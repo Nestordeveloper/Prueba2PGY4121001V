@@ -1,0 +1,83 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Alumnos 
+    </ion-title>
+    <ion-buttons slot="end">
+      <img class="stud" src="./assets/students.png" alt="student-icon" id="stude-icon" width="40" height="40">
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list lines="full">
+    <form [formGroup]="mainForm" (ngSubmit)="storeData()">
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input formControlName="nombre" type="text" maxLenght="15"required></ion-input>
+      </ion-item> 
+      <ion-item>
+        <ion-label position="floating">Apellido</ion-label>
+        <ion-input formControlName="apellido" type="text" maxLenght="15" required></ion-input>
+      </ion-item> 
+      <ion-item>
+        <ion-label position="floating">Segundo Apellido</ion-label>
+        <ion-input formControlName="sapellido" type="text" maxLenght="15" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nacionalidad</ion-label>
+        <ion-input formControlName="nacionalidad" type="text" maxLenght="15" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Edad</ion-label>
+        <ion-input formControlName="edad" type="number" maxLenght="2" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Direccion</ion-label>
+        <ion-input formControlName="direccion" type="text" maxLenght="30" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Comuna</ion-label>
+        <ion-input formControlName="comuna" type="text" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Tutor</ion-label>
+        <ion-input formControlName="tutor" type="text" maxLenght="20" required></ion-input>
+      </ion-item> 
+      <ion-item>
+        <ion-label position="floating">URL Imagen de perfil</ion-label>
+        <ion-input formControlName="img" placeholder="https://..."></ion-input>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" color="primary" shape="full" expand="block">
+            Registrar Alumno
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      Alumnos Registrados
+    </ion-list-header>
+
+    <ion-item lines="inset" *ngFor="let alumno of Data">
+      <ion-label>
+        <ion-avatar slot="start">
+          <img [src]="alumno.img">
+        </ion-avatar>
+        <h5>{{ alumno.nombre }}</h5>
+        <p>{{ alumno.apellido }}</p>
+        <p>{{ alumno.sapellido }}</p>
+      </ion-label>
+
+      <div class="item-note" item-end>
+        <ion-icon name="create" style="zoom: 2.0;" [routerLink]="['/alumno/',alumno.id]"></ion-icon>
+        <ion-icon name="trash" style="zoom: 2.0;" (click)="deleteAlumno(alumno.id)"></ion-icon>
+      </div>
+
+    </ion-item>
+  </ion-list>
+</ion-content>
